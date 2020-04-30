@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<launch>
+  <arg name="robot_namespace" default="jackal1" />
+  <arg name="x" default="0" />
+  <arg name="y" default="0" />
+  <arg name="z" default="0" />
+  <arg name="config" default="base" />  
+  <!-- Load Jackal's description, controllers, and teleop nodes. -->
+  <include file="$(find jackal_description)/launch/description.launch">
+	   <arg name="config" value="$(arg config)" />
+	   <arg name="robot_namespace" value="$(arg robot_namespace)" />
+  </include>
+  <include file="$(find jackal_control)/launch/control.launch" />
+  <!-- Spawn Jackal -->
+  <node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model"
+	      args="-urdf -model $(arg robot_namespace) -param robot_description -x $(arg x) -y $(arg y) -z $(arg z)" />
+
+  <!-- <node pkg="tf" type="static_transform_publisher" name="map_odom_broadcaster2" args="0 0 0 0 0 0 /$(arg robot_namespace) /$(arg robot_namespace)/base_link 100" /> -->
+
+  <!-- <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" /> -->
+
+  <!-- <node pkg="tf" type="static_transform_publisher" name="map_odom_broadcaster1" args="0 0 0 0 0 0 /$(arg robot_namespace) /$(arg robot_namespace)/base_link 100" /> -->
+</launch>
