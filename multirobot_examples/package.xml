@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<package>
+  <name>multirobot_examples</name>
+  <version>0.0.1</version>
+  <description>Packages for working with a Multi-Robot package.</description>
+
+  <maintainer email="kmpchk@gmail.com">Bulat Abbyasov</maintainer>
+
+  <license>BSD</license>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <export>
+  </export>
+</package>

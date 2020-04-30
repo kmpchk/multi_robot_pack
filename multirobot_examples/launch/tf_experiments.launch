@@ -1,0 +1,118 @@
+<launch>
+
+<arg name="world_name" default="$(find multirobot_examples)/worlds/tf_world.world"/>
+
+<!-- <node name="map_server2" pkg="map_server" type="map_server" args="/home/optio32/Desktop/test1/chem_map.yaml">
+	<param name="frame_id" type="string" value="world"/>
+	<remap from="map" to="chem_map"/>
+	<remap from="map_metadata" to="chem_map_metadata"/>
+</node> -->
+
+<include file="$(find gazebo_ros)/launch/empty_world.launch">
+	<arg name="world_name" value="$(arg world_name)"/>
+	<arg name="paused" value="false"/>
+	<arg name="use_sim_time" value="true"/>
+	<arg name="gui" value="true"/>
+	<arg name="headless" value="false"/>
+	<arg name="debug" value="false"/>
+</include>
+
+<!-- Add a single Husky robot -->
+<!-- <include file="$(find husky_gazebo)/launch/spawn_husky.launch">
+    <arg name="laser_enabled" value="true"/>
+    <arg name="robot_namespace" value="Husky1"/>
+    <arg name="multimaster" value="true"/>
+	<arg name="x" value="8"/>
+	<arg name="y" value="19"/>
+	<arg name="z" value="3"/>
+</include> -->
+
+<!-- <group ns="Husky1">
+	<arg name="tf_prefix" value="Husky1"/>
+    <param name="tf_prefix" value="Husky1"/>
+    <include file="$(find multihusky_gazebo)/launch/spawn_multihusky.launch">
+        <arg name="robot_namespace" value="Husky1"/>
+        <arg name="x" value="5.0"/>
+        <arg name="y" value="5.0"/>
+        <arg name="z" value="4.0"/>
+        <arg name="yaw" value="0.0"/>
+        <arg name="laser_enabled" value="true"/>
+        <arg name="kinect_enabled" value="false"/>
+    </include>
+
+    <node pkg="tf" type="static_transform_publisher" name="movement" args="0 0 0 0 0 0 /$(arg tf_prefix) /$(arg tf_prefix)/base_link 100" />
+  </group> -->
+
+<!-- Add a single hector_Quadrotor robot -->
+<!-- <group ns="uav1">
+ <param name="tf_prefix" value="uav1"/>
+ <include file="$(find hector_quadrotor_gazebo)/launch/spawn_quadrotor.launch">
+   <arg name="name" value="uav1"/>
+   <arg name="tf_prefix" value="uav1"/>
+   <arg name="x" value="5"/>
+   <arg name="y" value="7"/>
+   <arg name="z" value="3"/>
+ </include> 
+</group> -->
+
+<!-- <group ns="warthog1">
+	<arg name="tf_prefix" value="warthog1"/>
+	<param name="tf_prefix" value="warthog1"/>
+	<include file="$(find warthog_gazebo)/launch/warthog_sim.launch">
+		<arg name="x" value="3"/>
+		<arg name="y" value="3"/>
+		<arg name="z" value="5"/>
+		<arg name="robot_namespace" value="warthog1"/>
+	</include>
+
+	<node pkg="tf" type="static_transform_publisher" name="map_odom_broadcaster" args="0 0 0 0 0 0 /$(arg tf_prefix) /$(arg tf_prefix)/base_link 100" />
+</group> -->
+
+<group ns="jackal1">
+	<arg name="tf_prefix" value="jackal1"/>
+	<param name="tf_prefix" value="jackal1"/>
+	<include file="$(find jackal_gazebo)/launch/jackal_sim.launch">
+		<arg name="x" value="3"/>
+		<arg name="y" value="3"/>
+		<arg name="z" value="4"/>
+		<arg name="robot_namespace" value="jackal1"/>
+	</include>
+
+	<node pkg="tf" type="static_transform_publisher" name="map_odom_broadcaster" args="0 0 0 0 0 0 /$(arg tf_prefix) /$(arg tf_prefix)/base_link 100" />
+</group>
+
+<group ns="jackal2">
+	<arg name="tf_prefix" value="jackal2"/>
+	<param name="tf_prefix" value="jackal2"/>
+	<include file="$(find jackal_gazebo)/launch/jackal_sim.launch">
+		<arg name="x" value="6"/>
+		<arg name="y" value="3"/>
+		<arg name="z" value="4"/>
+		<arg name="robot_namespace" value="jackal2"/>
+	</include>
+
+	<node pkg="tf" type="static_transform_publisher" name="map_odom_broadcaster" args="0 0 0 0 0 0 /$(arg tf_prefix) /$(arg tf_prefix)/base_link 100" />
+</group>
+
+<!-- Add a single Warthog robot (19; 16; 3) -->
+
+<!-- <group ns="warthog1">
+	<param name="tf_prefix" value="warthog1"/>
+	<include file="$(find warthog_gazebo)/launch/warthog_sim.launch"/>
+</group>
+
+<group ns="jackal1">
+	<param name="tf_prefix" value="jackal1"/>
+	<include file="$(find jackal_gazebo)/launch/jackal_sim.launch">
+		<arg name="robot_namespace" value="jackal1"/>
+	</include>
+</group>
+
+<group ns="jackal2">
+	<param name="tf_prefix" value="jackal2"/>
+	<include file="$(find jackal_gazebo)/launch/jackal_sim.launch">
+		<arg name="robot_namespace" value="jackal2"/>
+	</include>
+</group> -->
+
+</launch>

@@ -1,0 +1,42 @@
+<?xml version="1.0" ?>
+<sdf version="1.5">
+<world name="default">
+<include>
+<uri>model://sun</uri>
+</include>
+<scene>
+<ambient>0.0 0.0 0.0 1.0</ambient>
+<shadows>0</shadows>
+</scene>
+
+<include>
+  <uri>model://ground_plane</uri>
+</include>
+
+<!-- Load the example_surface_1 terrain -->
+<!-- <include>
+ <uri>model://example_surface_labyrinth</uri>
+ <name>example_surface_labyrinth</name>
+ <pose>0 0 0 0 0 0</pose>
+</include> -->
+
+<model name="rad_zone_MPv">
+	<static>true</static>	
+<pose>5.000 4.000 2.000 0.000 0.000 0.000</pose>
+<frame name="radius">	
+<pose>3.000 0.000 0.000 0.000 0.000 0.000</pose>
+</frame>
+</model>
+
+<gui>
+<plugin name="gazebo_usar_gui" filename="libgazebo_usar_gui.so">
+<robots>jackal1;jackal2</robots>
+</plugin>
+</gui>
+
+<plugin name="gazebo_usar_core" filename="libgazebo_usar_core.so">
+	<robots>jackal1;jackal2</robots>
+</plugin>
+
+</world>
+</sdf>
