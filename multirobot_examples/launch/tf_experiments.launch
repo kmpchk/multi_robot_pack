@@ -68,31 +68,30 @@
 	<node pkg="tf" type="static_transform_publisher" name="map_odom_broadcaster" args="0 0 0 0 0 0 /$(arg tf_prefix) /$(arg tf_prefix)/base_link 100" />
 </group> -->
 
-<group ns="jackal1">
-	<arg name="tf_prefix" value="jackal1"/>
-	<param name="tf_prefix" value="jackal1"/>
+<group ns="Robot1">
+	<arg name="tf_prefix" value="Robot1"/>
+	<param name="tf_prefix" value="Robot1"/>
 	<include file="$(find jackal_gazebo)/launch/jackal_sim.launch">
 		<arg name="x" value="3"/>
 		<arg name="y" value="3"/>
 		<arg name="z" value="4"/>
-		<arg name="robot_namespace" value="jackal1"/>
+		<arg name="robot_namespace" value="Robot1"/>
 	</include>
-
-	<node pkg="tf" type="static_transform_publisher" name="map_odom_broadcaster" args="0 0 0 0 0 0 /$(arg tf_prefix) /$(arg tf_prefix)/base_link 100" />
 </group>
-
-<group ns="jackal2">
-	<arg name="tf_prefix" value="jackal2"/>
-	<param name="tf_prefix" value="jackal2"/>
-	<include file="$(find jackal_gazebo)/launch/jackal_sim.launch">
-		<arg name="x" value="6"/>
-		<arg name="y" value="3"/>
-		<arg name="z" value="4"/>
-		<arg name="robot_namespace" value="jackal2"/>
-	</include>
-
-	<node pkg="tf" type="static_transform_publisher" name="map_odom_broadcaster" args="0 0 0 0 0 0 /$(arg tf_prefix) /$(arg tf_prefix)/base_link 100" />
-</group>
+ 
+<group ns="Robot2">
+	<arg name="tf_prefix" value="Robot2"/>
+    <param name="tf_prefix" value="Robot2"/>
+    <include file="$(find multihusky_gazebo)/launch/spawn_multihusky.launch">
+        <arg name="robot_namespace" value="Robot2"/>
+        <arg name="x" value="5.0"/>
+        <arg name="y" value="5.0"/>
+        <arg name="z" value="4.0"/>
+        <arg name="yaw" value="0.0"/>
+        <arg name="laser_enabled" value="true"/>
+        <arg name="kinect_enabled" value="false"/>
+    </include>
+ </group>
 
 <!-- Add a single Warthog robot (19; 16; 3) -->
 

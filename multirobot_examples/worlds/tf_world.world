@@ -30,12 +30,12 @@
 
 <gui>
 <plugin name="gazebo_usar_gui" filename="libgazebo_usar_gui.so">
-<robots>jackal1;jackal2</robots>
+<robots>Robot1;Robot2</robots>
 </plugin>
 </gui>
 
 <plugin name="gazebo_usar_core" filename="libgazebo_usar_core.so">
-	<robots>jackal1;jackal2</robots>
+	<robots>Robot1;Robot2</robots>
 </plugin>
 
 </world>
