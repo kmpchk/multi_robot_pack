@@ -82,14 +82,16 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
     <!-- Start EKF for localization -->
 	
    
-    <!-- <node pkg="robot_localization_243" type="ekf_localization_node" name="ekf_localization">
-        <rosparam command="load" file="$(find multihusky_gazebo)/config/localization.yaml" />
-	       <remap from="odometry/filtered" to="odom"/>
-        <rosparam param="base_link_frame" subst_value="True">$(arg tfpre)/base_link</rosparam>
-    </node> -->
-
+    <node pkg="robot_localization_243" type="ekf_localization_node" name="ekf_localization">
+      <rosparam command="load" file="$(find multihusky_gazebo)/config/localization.yaml" />
+	    <remap from="odometry/filtered" to="odom"/>
+      <param name="map_frame"       value="map"/>
+      <param name="odom_frame"      value="odom"/>
+      <param name="base_link_frame" value="base_link"/>
+      <param name="world_frame"     value="odom"/>
+    </node>
     
-    <!-- <node pkg="tf" type="static_transform_publisher" name="map_odom_broadcaster" args="$(arg x) $(arg y) 0 0 0 0 /map /$(arg tfpre)/odom 100" /> -->
+    <node pkg="tf" type="static_transform_publisher" name="map_odom_broadcaster" args="$(arg x) $(arg y) $(arg z) 0 0 0 /map /$(arg tfpre)/odom 100" />
 
     <!-- Twister server for rviz control-->
     <node pkg="interactive_marker_twist_server" type="marker_server" name="twist_marker_server" output="screen">
