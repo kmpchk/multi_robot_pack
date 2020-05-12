@@ -1,4 +1,10 @@
 <launch>
+  <arg name="robot_namespace" default="Husky1" />
+  <arg name="x" default="0" />
+  <arg name="y" default="0" />
+  <arg name="z" default="0" />
+  <arg name="yaw" default="0" />
+
   <rosparam command="load" file="$(find jackal_control)/config/control.yaml" />
 
   <group if="$(optenv JACKAL_CONTROL_EXTRAS 0)" >
@@ -10,7 +16,17 @@
 
   <node pkg="robot_localization" type="ekf_localization_node" name="ekf_localization">
     <rosparam command="load" file="$(find jackal_control)/config/robot_localization.yaml" />
+    <remap from="odometry/filtered" to="odom"/>
+    <param name="map_frame"       value="map"/>
+    <param name="odom_frame"      value="odom"/>
+    <param name="base_link_frame" value="base_link"/>
+    <param name="world_frame"     value="odom"/>
   </node>
+
+  <param name="jackal_velocity_controller/odom_frame_id" value="$(arg robot_namespace)/odom"/>
+  <param name="jackal_velocity_controller/base_frame_id" value="$(arg robot_namespace)/base_link"/>
+
+ <node pkg="tf" type="static_transform_publisher" name="map_odom_broadcaster" args="$(arg x) $(arg y) $(arg z) 0 0 0 /map /$(arg robot_namespace)/odom 100" />  
 
   <node pkg="twist_mux" type="twist_mux" name="twist_mux">
     <rosparam command="load" file="$(find jackal_control)/config/twist_mux.yaml" />
