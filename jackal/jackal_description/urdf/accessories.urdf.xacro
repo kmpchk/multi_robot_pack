@@ -1,5 +1,8 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <xacro:arg name="robot_namespace1" default="jackal1"/>
+  <!-- topic="$(optenv JACKAL_LASER_TOPIC front/scan) -->
   <!--
     As you add to this URDF, please be aware that both the robot and
     simulation include it. You must retain compatibility with all of
@@ -7,7 +10,7 @@
 
     jackal_viz/launch/view_model.launch
     jackal_gazebo/launch/jackal_world.launch
-    jackal_base/launch/base.launch
+    jackal_base/launch/base.launch    
   -->
 
   <!-- Macros to generate standoffs for offset payload mounting. -->
@@ -22,14 +25,16 @@
       <xacro:include filename="$(find jackal_description)/urdf/accessories/hokuyo_ust10.urdf.xacro" />
       <hokuyo_ust10_mount prefix="$(optenv JACKAL_LASER_MOUNT front)"
                           parent_link="$(optenv JACKAL_LASER_MOUNT front)_mount"
-                          topic="$(optenv JACKAL_LASER_TOPIC front/scan)" />
+                          topic="$(optenv JACKAL_LASER_TOPIC front/scan)"
+                          robot_namespace="front" />
     </xacro:if>
 
     <xacro:unless value="$(optenv JACKAL_LASER_HOKUYO 0)">
       <xacro:include filename="$(find jackal_description)/urdf/accessories/sick_lms1xx_mount.urdf.xacro" />
       <sick_lms1xx_mount prefix="$(optenv JACKAL_LASER_MOUNT front)"
-                         parent_link="$(optenv JACKAL_LASER_MOUNT front)_mount"
-                         topic="$(optenv JACKAL_LASER_TOPIC front/scan)"/>
+                        parent_link="$(optenv JACKAL_LASER_MOUNT front)_mount"
+                         topic="$(optenv JACKAL_LASER_TOPIC front/scan)"
+                         robot_namespace="$(arg robot_namespace)"/>
     </xacro:unless>
   </xacro:if>
 
