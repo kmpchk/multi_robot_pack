@@ -1,6 +1,6 @@
 <launch>
 
-<arg name="world_name" default="$(find multirobot_examples)/worlds/tf_world.world"/>
+<arg name="world_name" default="$(find multirobot_examples)/worlds/slam_world.world"/>
 
 <!-- <node name="map_server2" pkg="map_server" type="map_server" args="/home/optio32/Desktop/test1/chem_map.yaml">
 	<param name="frame_id" type="string" value="world"/>
@@ -72,9 +72,9 @@
 	<arg name="tf_prefix" value="Robot1"/>
 	<param name="tf_prefix" value="Robot1"/>
 	<include file="$(find jackal_gazebo)/launch/jackal_sim.launch">
-		<arg name="x" value="3"/>
-		<arg name="y" value="3"/>
-		<arg name="z" value="4"/>
+		<arg name="x" value="5"/>
+		<arg name="y" value="5"/>
+		<arg name="z" value="0"/>
 		<arg name="robot_namespace" value="Robot1"/>
 	</include>
 </group>
@@ -84,9 +84,9 @@
     <param name="tf_prefix" value="Robot2"/>
     <include file="$(find multihusky_gazebo)/launch/spawn_multihusky.launch">
         <arg name="robot_namespace" value="Robot2"/>
-        <arg name="x" value="5.0"/>
-        <arg name="y" value="5.0"/>
-        <arg name="z" value="4.0"/>
+        <arg name="x" value="-5.0"/>
+        <arg name="y" value="-5.0"/>
+        <arg name="z" value="0.0"/>
         <arg name="yaw" value="0.0"/>
         <arg name="laser_enabled" value="true"/>
         <arg name="kinect_enabled" value="false"/>
