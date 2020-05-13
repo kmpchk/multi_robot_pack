@@ -256,6 +256,8 @@
     <xacro:arg name="robot_namespace" value="$(arg robot_namespace)"/>
   </xacro:include>
 
+	
+
   <!-- Optional standard accessories, including their simulation data. The rendering
        of these into the final description is controlled by optenv variables, which
        default each one to off.-->
