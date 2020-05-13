@@ -26,14 +26,13 @@
       <hokuyo_ust10_mount prefix="$(optenv JACKAL_LASER_MOUNT front)"
                           parent_link="$(optenv JACKAL_LASER_MOUNT front)_mount"
                           topic="$(optenv JACKAL_LASER_TOPIC front/scan)"
-                          robot_namespace="front" />
+                          robot_namespace="$(arg robot_namespace)" />
     </xacro:if>
 
     <xacro:unless value="$(optenv JACKAL_LASER_HOKUYO 0)">
       <xacro:include filename="$(find jackal_description)/urdf/accessories/sick_lms1xx_mount.urdf.xacro" />
       <sick_lms1xx_mount prefix="$(optenv JACKAL_LASER_MOUNT front)"
-                        parent_link="$(optenv JACKAL_LASER_MOUNT front)_mount"
-                         topic="$(optenv JACKAL_LASER_TOPIC front/scan)"
+                         parent_link="$(optenv JACKAL_LASER_MOUNT front)_mount"
                          robot_namespace="$(arg robot_namespace)"/>
     </xacro:unless>
   </xacro:if>
